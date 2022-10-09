@@ -17,10 +17,11 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-      # - "443:443"
+      - "443:443"
     volumes:
       - .docker/nginx/config/app.conf:/etc/nginx/conf.d/app.conf
       - .docker/nginx/logs:/var/log/nginx
+      - .docker/ssl:/etc/nginx/ssl:cached
       - ./:/var/www/html/app
     depends_on: 
       - php
