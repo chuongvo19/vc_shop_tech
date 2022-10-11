@@ -1,0 +1,17 @@
+{
+    "name": "shoptech/shoptech",
+    "description": "This is site shoptech",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Vo Chuong",
+            "email": "vochuong193@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "require": {}
+}
