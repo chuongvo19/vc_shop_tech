@@ -1,4 +1,5 @@
 # vc_shop_tech
+## The project stops for a period of time. will continue when app_core is complete
 + vc shop tech is project ecommence and news tech
 + project build with nginx, php:7.4-fpm, mysql, phpmyadmin
 + project use code PHP and Javascript (not use framework)
