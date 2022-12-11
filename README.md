@@ -1,5 +1,4 @@
 # vc_shop_tech
-+ This is first project in big project VC study
 + vc shop tech is project ecommence and news tech
 + project build with nginx, php:7.4-fpm, mysql, phpmyadmin
 + project use code PHP and Javascript (not use framework)
