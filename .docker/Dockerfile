@@ -1,13 +1,33 @@
 # About my dockerfile
-FROM php:7.4-fpm
+FROM php:8.3-fpm
 
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions gd pdo_mysql mysqli redis imagick zip
+ARG user
+ARG uid
 
-RUN apt-get update
-RUN apt install -y \
-    nano
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+RUN groupadd -g 1000 chuongvq \
+ && useradd -m -u 1000 -g 1000 -s /bin/bash chuongvq
 
 WORKDIR /var/www/html/app
+
+RUN chown -R chuongvq:chuongvq ./
 
 EXPOSE 9000

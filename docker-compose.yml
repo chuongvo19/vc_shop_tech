@@ -1,13 +1,14 @@
-version: '3.8'
 services:
   app:
     container_name: vcs_tech_app
     build:
-      context: .docker
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: .docker/Dockerfile
     restart: unless-stopped
     volumes:
-      - ./:/var/www/html/app
+      - ./src:/var/www/html/app
+    entrypoint: >
+      bash -c "chown -R chuongvq:chuongvq /var/www/html/app && exec php-fpm"
     networks:
       - app_network
 
@@ -22,9 +23,9 @@ services:
       - .docker/nginx/config/app.conf:/etc/nginx/conf.d/app.conf
       - .docker/nginx/logs:/var/log/nginx
       - .docker/ssl:/etc/nginx/ssl:cached
-      - ./:/var/www/html/app
+      - ./src:/var/www/html/app
     depends_on: 
-      - php
+      - app
     networks:
       - app_network
 
