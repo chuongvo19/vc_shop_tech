@@ -30,4 +30,6 @@ WORKDIR /var/www/html/app
 
 RUN chown -R chuongvq:chuongvq ./
 
+USER chuongvq
+
 EXPOSE 9000
